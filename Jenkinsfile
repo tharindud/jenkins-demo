@@ -6,13 +6,17 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                log.info 'running build'
+                script {
+                    log.info 'running build'
+                }
                 sh 'mvn -B -DskipTests clean package'
             }
         }
         stage('Test') {
             steps {
-                log.info 'running tests'
+                script {
+                    log.info 'running tests'
+                }
                 sh 'mvn test'
             }
             post {
