@@ -13,7 +13,9 @@ pipeline {
             steps {
                 sh 'mvn test'
                 script {
-                    pwd
+                    sh 'pwd'
+                }
+                script {
                     blazetest.service("zqnfqneukwmmvzxqxssb.supabase.co")
                         .trace()
                         .license("ABCDE-FGHIJ-KLMNO-PQRST")
