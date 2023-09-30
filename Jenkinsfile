@@ -1,4 +1,4 @@
-@Library('supabase_jenkins_shared_lib') _
+@Library('supabase_jenkins_shared_lib@main') _
 
 pipeline {
     agent any
