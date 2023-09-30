@@ -19,6 +19,7 @@ pipeline {
                 }
                 sh 'mvn test'
                 script {
+                    blazetest.foo()
                     blazetest.service("zqnfqneukwmmvzxqxssb.supabase.co")
                         .trace()
                         .license("ABCDE-FGHIJ-KLMNO-PQRST")
