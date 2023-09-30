@@ -14,6 +14,9 @@ pipeline {
                 sh 'mvn test'
                 script {
                     sh 'pwd'
+                    sh 'ls -la'
+                    sh 'ls -la target'
+                    sh 'ls -la target/surefire-reports'
                 }
                 script {
                     blazetest.service("zqnfqneukwmmvzxqxssb.supabase.co")
