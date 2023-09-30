@@ -17,8 +17,6 @@ pipeline {
             post {
                 always {
                     junit 'target/surefire-reports/*.xml'
-                }
-                success {
                     script {
                         blazetest.service("zqnfqneukwmmvzxqxssb.supabase.co")
                             .trace()
