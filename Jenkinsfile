@@ -14,9 +14,6 @@ pipeline {
         }
         stage('Test') {
             steps {
-                script {
-                    log.info 'running tests'
-                }
                 sh 'mvn test'
                 script {
                     blaze.foo()
