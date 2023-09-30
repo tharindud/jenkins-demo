@@ -3,6 +3,10 @@
 pipeline {
     agent any
 
+    environment {
+        BLAZETEST_LICENSE = 'ABCDE-FGHIJ-KLMNO-PQRST'
+    }
+
     stages {
         stage('Build') {
             steps {
