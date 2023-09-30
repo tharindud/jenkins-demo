@@ -20,7 +20,7 @@ pipeline {
                 success {
                     script {
                         sh 'curl -L -o junit-xml-merger.jar https://github.com/codeclou/java-junit-xml-merger/releases/download/1.0.1/junit-xml-merger.jar'
-                        sh 'java -jar junit-xml-merger.jar -i=target/surefire-reports/ -o=target/surefire-reports/junit-results.xml -s="jenkins.demo"'
+                        sh 'java -jar junit-xml-merger.jar -i=target/surefire-reports/ -o=target/junit-results.xml -s="jenkins.demo"'
                         blazetest.service("zqnfqneukwmmvzxqxssb.supabase.co")
                             .trace()
                             .license("ABCDE-FGHIJ-KLMNO-PQRST")
@@ -29,7 +29,7 @@ pipeline {
                             .metadata("BUILD_NUMBER", "${env.BUILD_NUMBER}")
                             .metadata("BUILD_TAG", "${env.BUILD_TAG}")
                             .junit()
-                            .upload(readFile("target/surefire-reports/junit-results.xml"));
+                            .upload(readFile("target/junit-results.xml"));
                     }
                 }
             }
