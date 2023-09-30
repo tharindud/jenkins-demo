@@ -25,7 +25,7 @@ pipeline {
                     script {
                         blazetest.service(this, "zqnfqneukwmmvzxqxssb.supabase.co")
                             .junit()
-                            .upload("target/surefire-reports/junit-results.xml")
+                            .upload(readFile("target/surefire-reports/junit-results.xml"));
                     }
                 }
             }
