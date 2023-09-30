@@ -13,6 +13,7 @@ pipeline {
             steps {
                 script {
                     sh 'mvn test'
+                    sh 'target/surefire-reports/TEST-jenkins.demo.TestCalculator.xml'
                     blazetest.service("zqnfqneukwmmvzxqxssb.supabase.co")
                         .trace()
                         .license("ABCDE-FGHIJ-KLMNO-PQRST")
