@@ -19,6 +19,7 @@ pipeline {
                 }
                 success {
                     script {
+                        sh 'cat target/surefire-reports/TEST-jenkins.demo.TestCalculator.xml'
                         blazetest.service("zqnfqneukwmmvzxqxssb.supabase.co")
                             .trace()
                             .license("ABCDE-FGHIJ-KLMNO-PQRST")
