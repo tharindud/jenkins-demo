@@ -11,11 +11,13 @@ pipeline {
         }
         stage('Test') {
             steps {
-                script {
-                    sh 'mvn test'
-                    sh 'pwd'
-                    sh 'id'
-                    sh '/var/lib/jenkins/workspace/jenkins-demo/target/surefire-reports/TEST-jenkins.demo.TestCalculator.xml'
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+                success {
                     blazetest.service("zqnfqneukwmmvzxqxssb.supabase.co")
                         .trace()
                         .license("ABCDE-FGHIJ-KLMNO-PQRST")
@@ -23,12 +25,7 @@ pipeline {
                         .metadata("name", "jenkins-demo")
                         .metadata("build", "67")
                         .junit()
-                        .upload("/var/lib/jenkins/workspace/jenkins-demo/target/surefire-reports/TEST-jenkins.demo.TestCalculator.xml");
-                }
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
+                        .upload("target/surefire-reports/TEST-jenkins.demo.TestCalculator.xml");
                 }
             }
         }
