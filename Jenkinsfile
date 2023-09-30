@@ -12,9 +12,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'mvn test'
-                sh 'curl -L -o junit-xml-merger.jar https://github.com/codeclou/java-junit-xml-merger/releases/download/1.0.1/junit-xml-merger.jar'
-                sh 'java -jar junit-xml-merger.jar -i=target/surefire-reports/ -o=target/junit-results.xml -s="jenkins.demo"'
-                sh 'cat target/junit-results.xml'
+                sh 'cp src/test/resources/junit-results.xml target/surefire-reports/'
             }
             post {
                 always {
@@ -29,7 +27,7 @@ pipeline {
                             .metadata("name", "jenkins-demo")
                             .metadata("build", "67")
                             .junit()
-                            .upload(readFile("target/junit-results.xml"));
+                            .upload(readFile("target/surefire-reports/junit-results.xml"));
                     }
                 }
             }
