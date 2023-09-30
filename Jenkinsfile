@@ -14,6 +14,7 @@ pipeline {
                 script {
                     sh 'mvn test'
                     sh 'pwd'
+                    sh 'id'
                     sh 'target/surefire-reports/TEST-jenkins.demo.TestCalculator.xml'
                     blazetest.service("zqnfqneukwmmvzxqxssb.supabase.co")
                         .trace()
