@@ -6,9 +6,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                script {
-                    log.info 'running build'
-                }
                 sh 'mvn -B -DskipTests clean package'
             }
         }
