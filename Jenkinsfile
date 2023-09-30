@@ -5,7 +5,7 @@ pipeline {
 
     environment {
         BLAZETEST_LICENSE = 'ABCDE-FGHIJ-KLMNO-PQRST'
-        // BLAZETEST_AUTHORIZATION = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxbmZxbmV1a3dtbXZ6eHF4c3NiIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTUwNzkzNzAsImV4cCI6MjAxMDY1NTM3MH0.EQqV1X4uaPXF2q8iZEsrv83ZiHrtxyG-T407_PvIYPk'
+        BLAZETEST_AUTHORIZATION = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxbmZxbmV1a3dtbXZ6eHF4c3NiIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTUwNzkzNzAsImV4cCI6MjAxMDY1NTM3MH0.EQqV1X4uaPXF2q8iZEsrv83ZiHrtxyG-T407_PvIYPk'
     }
 
     stages {
@@ -25,7 +25,7 @@ pipeline {
                     script {
                         blazetest.service(this, "zqnfqneukwmmvzxqxssb.supabase.co")
                             .junit()
-                            .upload(readFile("target/surefire-reports/junit-results.xml"));
+                            .upload("target/surefire-reports/junit-results.xml")
                     }
                 }
             }
