@@ -11,14 +11,8 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'mvn test'
                 script {
-                    sh 'pwd'
-                    sh 'ls -la'
-                    sh 'ls -la target'
-                    sh 'ls -la target/surefire-reports'
-                }
-                script {
+                    sh 'mvn test'
                     blazetest.service("zqnfqneukwmmvzxqxssb.supabase.co")
                         .trace()
                         .license("ABCDE-FGHIJ-KLMNO-PQRST")
