@@ -1,4 +1,4 @@
-@Library('git@github.com:railflow/supabase_jenkins_shared_lib.git') _
+@Library('supabase_jenkins_shared_lib@main') _
 
 pipeline {
     agent any
