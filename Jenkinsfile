@@ -19,7 +19,7 @@ pipeline {
                 }
                 success {
                     script {
-                        sh 'cat target/surefire-reports/TEST-jenkins.demo.TestCalculator.xml'
+                        def report = readFile("target/surefire-reports/TEST-jenkins.demo.TestCalculator.xml")
                         blazetest.service("zqnfqneukwmmvzxqxssb.supabase.co")
                             .trace()
                             .license("ABCDE-FGHIJ-KLMNO-PQRST")
@@ -27,7 +27,7 @@ pipeline {
                             .metadata("name", "jenkins-demo")
                             .metadata("build", "67")
                             .junit()
-                            .upload("target/surefire-reports/TEST-jenkins.demo.TestCalculator.xml");
+                            .upload(report);
                     }
                 }
             }
