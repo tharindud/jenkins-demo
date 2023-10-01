@@ -19,13 +19,12 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'mvn test'
-                sh 'cp src/test/resources/junit-results.xml target/surefire-reports/'
             }
             post {
                 always {
                     junit 'target/surefire-reports/*.xml'
                     script {
-                        blazetest.junit(readFile("target/surefire-reports/junit-results.xml"));
+                        blazetest.junit(readFile("src/test/resources/junit-results.xml"));
                     }
                 }
             }
