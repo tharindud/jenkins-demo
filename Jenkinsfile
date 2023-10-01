@@ -3,12 +3,12 @@
 pipeline {
     agent any
 
-    environment {
-        BLAZETEST_HOST = 'zqnfqneukwmmvzxqxssb.supabase.co'
-        BLAZETEST_LICENSE = 'ABCDE-FGHIJ-KLMNO-PQRST'
-        BLAZETEST_AUTHORIZATION = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxbmZxbmV1a3dtbXZ6eHF4c3NiIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTUwNzkzNzAsImV4cCI6MjAxMDY1NTM3MH0.EQqV1X4uaPXF2q8iZEsrv83ZiHrtxyG-T407_PvIYPk'
-        BLAZETEST_TRACE = 'true'
-    }
+    // environment {
+    //     BLAZETEST_HOST = 'zqnfqneukwmmvzxqxssb.supabase.co'
+    //     BLAZETEST_LICENSE = 'ABCDE-FGHIJ-KLMNO-PQRST'
+    //     BLAZETEST_AUTHORIZATION = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxbmZxbmV1a3dtbXZ6eHF4c3NiIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTUwNzkzNzAsImV4cCI6MjAxMDY1NTM3MH0.EQqV1X4uaPXF2q8iZEsrv83ZiHrtxyG-T407_PvIYPk'
+    //     BLAZETEST_TRACE = 'true'
+    // }
 
     stages {
         stage('Build') {
@@ -25,7 +25,13 @@ pipeline {
                 always {
                     junit 'target/surefire-reports/*.xml'
                     script {
-                        blazetest.junit(this, "target/surefire-reports/junit-results.xml");
+                        // blazetest.junit(this, 'target/surefire-reports/junit-results.xml');
+                        blazetest.service(this, 'zqnfqneukwmmvzxqxssb.supabase.co')
+                            .trace()
+                            .license('ABCDE-FGHIJ-KLMNO-PQRST')
+                            .authorization('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxbmZxbmV1a3dtbXZ6eHF4c3NiIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTUwNzkzNzAsImV4cCI6MjAxMDY1NTM3MH0.EQqV1X4uaPXF2q8iZEsrv83ZiHrtxyG-T407_PvIYPk')
+                            .junit()
+                            .submit(readFile('target/surefire-reports/junit-results.xml'));
                     }
                 }
             }
