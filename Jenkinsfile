@@ -25,7 +25,7 @@ pipeline {
                 always {
                     junit 'target/surefire-reports/*.xml'
                     script {
-                        blazetest.junitExtractor(readFile("target/surefire-reports/junit-results.xml"));
+                        blazetest.junit(this, readFile("target/surefire-reports/junit-results.xml"));
                     }
                 }
             }
