@@ -14,8 +14,19 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
-                script {
-                        blazetest.junit(readFile("src/test/resources/junit-results.xml"));
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+                sh 'cp src/test/resources/junit-results.xml target/surefire-reports/'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                    // script {
+                    //     blazetest.junit(readFile("target/surefire-reports/junit-results.xml"));
+                    // }
                 }
             }
         }
