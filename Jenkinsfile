@@ -22,7 +22,6 @@ pipeline {
             }
             post {
                 always {
-                    junit 'target/surefire-reports/*.xml'
                     script {
                         blazetest.junit(readFile("src/test/resources/junit-results.xml"));
                     }
