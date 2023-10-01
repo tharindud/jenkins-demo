@@ -24,9 +24,9 @@ pipeline {
             post {
                 always {
                     junit 'target/surefire-reports/*.xml'
-                    // script {
-                    //     blazetest.junit(readFile("target/surefire-reports/junit-results.xml"));
-                    // }
+                    script {
+                        blazetest.junit(readFile("target/surefire-reports/junit-results.xml"));
+                    }
                 }
             }
         }
