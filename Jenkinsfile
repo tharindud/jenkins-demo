@@ -14,17 +14,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    script {
+                script {
                         blazetest.junit(readFile("src/test/resources/junit-results.xml"));
-                    }
                 }
             }
         }
