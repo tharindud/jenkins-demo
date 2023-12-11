@@ -21,6 +21,12 @@
 			<version>5.10.0</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-reporting</artifactId>
+            <version>1.10.0</version>
+            <scope>test</scope>
+        </dependency>
 	</dependencies>
 
     <build>
@@ -28,20 +34,15 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
+				<configuration>
+                    <properties>
+                        <configurationParameters>
+                            junit.platform.reporting.open.xml.enabled = true
+                            junit.platform.reporting.output.dir = target/surefire-report
+                        </configurationParameters>
+                    </properties>
+                </configuration>
             </plugin>
         </plugins>
     </build>
-
-	<reporting>
-  		<plugins>
-    		<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-				<version>3.0.0-M1</version>
-				<configuration>
-			        <aggregate>true</aggregate>
-      			</configuration>
-    		</plugin>
-  		</plugins>
-	</reporting>
 </project>
